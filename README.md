@@ -19,10 +19,10 @@ A comprehensive Linux installation script for [CLIProxyAPI](https://github.com/r
 
 ```bash
 # Download and run the installer
-curl -fsSL https://raw.githubusercontent.com/brokechubb/cliproxyapi-installer/refs/heads/master/cliproxyapi-installer | bash
+curl -fsSL https://raw.githubusercontent.com/router-for-me/cliproxyapi-installer/refs/heads/master/cliproxyapi-installer | bash
 
 # Or clone and run manually
-git clone https://github.com/brokechubb/cliproxyapi-installer.git
+git clone https://github.com/router-for-me/cliproxyapi-installer.git
 cd cliproxyapi-installer
 ./cliproxyapi-installer
 ```
@@ -415,7 +415,7 @@ This installer script is released under the same license as CLIProxyAPI.
 ## Support
 
 - **CLIProxyAPI Documentation**: https://github.com/router-for-me/CLIProxyAPI
-- **Installer Issues**: https://github.com/brokechubb/cliproxyapi-installer/issues
+- **Installer Issues**: https://github.com/router-for-me/cliproxyapi-installer/issues
 - **General Help**: Run `./cliproxyapi-installer --help`
 
 ## Changelog
