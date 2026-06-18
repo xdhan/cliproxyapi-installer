@@ -7,11 +7,12 @@
 set -euo pipefail
 
 # Configuration
-REPO_OWNER="router-for-me"
+REPO_OWNER="xdhan"
 REPO_NAME="CLIProxyAPI"
 INSTALL_DIR="$HOME/cliproxyapi"
 API_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest"
 SCRIPT_NAME="cliproxyapi-installer"
+PROJECT_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}"
 
 # Colors for output
 RED='\033[0;31m'
@@ -49,7 +50,7 @@ show_authentication_info() {
     echo
     echo -e "${BLUE}CLIProxyAPI supports authentication for multiple providers:${NC}"
     echo
-    echo -e "${GREEN}📚 Full Documentation:${NC} https://github.com/router-for-me/CLIProxyAPI"
+    echo -e "${GREEN}📚 Full Documentation:${NC} ${PROJECT_URL}"
     echo
     echo -e "${YELLOW}Authentication Commands:${NC}"
     echo
@@ -295,7 +296,7 @@ show_quick_start() {
         echo -e "   ${CYAN}systemctl --user status cliproxyapi.service${NC}"
         echo
         echo -e "${BLUE}6. Read the full documentation:${NC}"
-        echo -e "   ${CYAN}https://github.com/router-for-me/CLIProxyAPI${NC}"
+        echo -e "   ${CYAN}${PROJECT_URL}${NC}"
     else
         echo -e "${BLUE}3. Start the service:${NC}"
         echo -e "   ${CYAN}./cli-proxy-api${NC}"
@@ -306,7 +307,7 @@ show_quick_start() {
         echo -e "   ${CYAN}systemctl --user status cliproxyapi.service${NC}"
         echo
         echo -e "${BLUE}5. Read the full documentation:${NC}"
-        echo -e "   ${CYAN}https://github.com/router-for-me/CLIProxyAPI${NC}"
+        echo -e "   ${CYAN}${PROJECT_URL}${NC}"
     fi
     echo
 }

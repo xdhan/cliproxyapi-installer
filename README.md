@@ -1,6 +1,6 @@
 # CLIProxyAPI Linux Installer
 
-A comprehensive Linux installation script for [CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI) that automates installation, upgrades, and management of the CLIProxyAPI service.
+A comprehensive Linux installation script for [CLIProxyAPI](https://github.com/xdhan/CLIProxyAPI) that automates installation, upgrades, and management of the CLIProxyAPI service.
 
 ## Features
 
@@ -20,10 +20,10 @@ A comprehensive Linux installation script for [CLIProxyAPI](https://github.com/r
 
 ```bash
 # Download and run the installer
-curl -fsSL https://raw.githubusercontent.com/router-for-me/cliproxyapi-installer/refs/heads/master/cliproxyapi-installer | bash
+curl -fsSL https://raw.githubusercontent.com/xdhan/cliproxyapi-installer/refs/heads/master/cliproxyapi-installer | bash
 
 # Or clone and run manually
-git clone https://github.com/router-for-me/cliproxyapi-installer.git
+git clone https://github.com/xdhan/cliproxyapi-installer.git
 cd cliproxyapi-installer
 ./cliproxyapi-installer
 ```
@@ -422,8 +422,8 @@ This installer script is released under the same license as CLIProxyAPI.
 
 ## Support
 
-- **CLIProxyAPI Documentation**: https://github.com/router-for-me/CLIProxyAPI
-- **Installer Issues**: https://github.com/router-for-me/cliproxyapi-installer/issues
+- **CLIProxyAPI Documentation**: https://github.com/xdhan/CLIProxyAPI
+- **Installer Issues**: https://github.com/xdhan/cliproxyapi-installer/issues
 - **General Help**: Run `./cliproxyapi-installer --help`
 
 ## Changelog
