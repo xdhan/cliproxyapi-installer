@@ -13,6 +13,8 @@ INSTALL_DIR="$HOME/cliproxyapi"
 API_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest"
 SCRIPT_NAME="cliproxyapi-installer"
 PROJECT_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}"
+DEFAULT_PANEL_REPO="https://github.com/xdhan/Cli-Proxy-API-Management-Center"
+LEGACY_PANEL_REPO="https://github.com/router-for-me/Cli-Proxy-API-Management-Center"
 
 # Colors for output
 RED='\033[0;31m'
@@ -676,16 +678,37 @@ setup_config() {
         cp "$executable" "${INSTALL_DIR}/cli-proxy-api"
         log_success "Copied executable to ${INSTALL_DIR}/cli-proxy-api"
     fi
+
+    ensure_panel_repository() {
+        local config_path="$1"
+        if [[ ! -f "$config_path" ]]; then
+            return
+        fi
+
+        if grep -q "panel-github-repository: \"${LEGACY_PANEL_REPO}\"" "$config_path"; then
+            sed -i "s|panel-github-repository: \"${LEGACY_PANEL_REPO}\"|panel-github-repository: \"${DEFAULT_PANEL_REPO}\"|g" "$config_path"
+            log_success "Updated panel-github-repository to ${DEFAULT_PANEL_REPO}"
+            return
+        fi
+
+        if ! grep -q "^  panel-github-repository:" "$config_path"; then
+            return
+        fi
+
+        log_info "Preserving custom panel-github-repository in existing config"
+    }
     
     # PRIORITY 1: If we have a backup from this upgrade, restore it
     if [[ -n "$backup_file" && -f "$backup_file" ]]; then
         cp "$backup_file" "$config"
+        ensure_panel_repository "$config"
         log_success "Restored configuration from backup"
         return
     fi
     
     # PRIORITY 2: Check for existing config in main directory (NEVER overwrite)
     if [[ -f "$config" ]]; then
+        ensure_panel_repository "$config"
         log_success "Preserved existing user configuration (config.yaml)"
         log_info "User modifications are protected during upgrades"
         return
@@ -696,6 +719,7 @@ setup_config() {
     current_version_dir=$(get_current_version_dir)
     if [[ -n "$current_version_dir" && -f "${current_version_dir}/config.yaml" ]]; then
         cp "${current_version_dir}/config.yaml" "$config"
+        ensure_panel_repository "$config"
         log_success "Preserved existing configuration from previous version"
         return
     fi
@@ -713,6 +737,7 @@ setup_config() {
         # Replace placeholder API keys with generated keys
         sed -i "s/\"your-api-key-1\"/\"$generated_key1\"/g" "$config"
         sed -i "s/\"your-api-key-2\"/\"$generated_key2\"/g" "$config"
+        ensure_panel_repository "$config"
 
         log_success "Created config.yaml from example with generated API keys"
         log_info "Generated API keys: $generated_key1, $generated_key2"
